@@ -1,0 +1,41 @@
+{
+  "name": "policy_desk",
+  "version": "1.0.0",
+  "description": "It's a RESTful API application for Policy Desk with Node.js, Express, and PostgreSQL.",
+  "main": "src/app.js",
+  "engines": {
+    "node": "=16.13.2",
+    "npm": "=8.1.2"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js --exec babel-node --presets env",
+    "build": "babel src -d dist --source-maps inline --copy-files",
+    "serve": "node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/PalashBera/policy_desk.git"
+  },
+  "keywords": [
+    "RESTful API",
+    "Express",
+    "PostgreSQL",
+    "Node.js",
+    "Policy"
+  ],
+  "author": "Palash Bera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PalashBera/policy_desk/issues"
+  },
+  "homepage": "https://github.com/PalashBera/policy_desk#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
