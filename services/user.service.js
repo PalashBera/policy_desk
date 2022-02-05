@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+import bcrypt from 'bcryptjs';
 
 const db = require("../models");
 
@@ -41,5 +42,10 @@ module.exports = {
           return value;
         }
       }).withMessage("Password confirmation doesn\'t match with password.")
-  ]
+  ],
+
+  encryptPassword(password) {
+    const salt = bcrypt.genSaltSync(10);
+    return bcrypt.hashSync(password, salt);
+  }
 }
