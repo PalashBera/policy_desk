@@ -1,5 +1,8 @@
+require("dotenv").config();
 global.env = process.env.NODE_ENV || "development";
-const config = require("./config/environments/" + global.env);
+const config = require("./config/" + global.env);
+const db = require("./models");
+
 
 import express from "express";
 import logger from "morgan";
@@ -10,6 +13,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+db.sequelize.authenticate().then(() => {
+  console.log("DB connection has been established successfully.");
+}).catch(err => {
+  console.error("Unable to connect to the database:", err);
+});
 
 app.use(logger("dev"));
 
