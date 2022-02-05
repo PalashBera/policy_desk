@@ -3,10 +3,10 @@ global.env = process.env.NODE_ENV || "development";
 const config = require("./config/" + global.env);
 const db = require("./models");
 
-
 import express from "express";
 import logger from "morgan";
 import cors from "cors";
+import { rootRouter } from "./routes/index.router";
 
 const app = express();
 
@@ -21,6 +21,8 @@ db.sequelize.authenticate().then(() => {
 });
 
 app.use(logger("dev"));
+
+app.use("/api", rootRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Policy Desk application." });

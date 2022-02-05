@@ -23,7 +23,9 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     }
   }, {
-    timestamps: true
+    timestamps: true,
+    indexes: [{ unique: true, fields: ["email"] }],
+    underscored: true
   });
 
   return User;

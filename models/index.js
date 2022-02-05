@@ -1,4 +1,4 @@
-const databaseConfig = require("../config/database.js")[global.env];
+const databaseConfig = require("../config/database.js")[process.env.NODE_ENV || "development"];
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
