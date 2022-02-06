@@ -44,7 +44,7 @@ module.exports = {
       }).withMessage("Password confirmation doesn\'t match with password.")
   ],
 
-  validateLogIn: [
+  validateSignIn: [
     check("email")
       .exists().withMessage("Email should be present.").bail()
       .isString().withMessage("Email should be string.").bail()
@@ -53,7 +53,7 @@ module.exports = {
       .normalizeEmail()
       .custom(async value => {
         const user = await db.users.findOne({ where: { email: value } });
-        if (!user) return Promise.reject("No user found with this email.");
+        if (!user) return Promise.reject("User not found with this email.");
       }),
 
     check("password")

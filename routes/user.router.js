@@ -5,4 +5,4 @@ import userService from "../services/user.service";
 export const userRouter = express.Router();
 
 userRouter.post("/signup", userService.validateSignUp, userController.signup);
-userRouter.post("/login", userService.validateLogIn, userController.login);
+userRouter.post("/signin", userService.validateSignIn, userController.signin);
