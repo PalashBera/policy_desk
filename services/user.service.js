@@ -1,7 +1,6 @@
 import { check } from "express-validator";
 import bcrypt from "bcryptjs";
-
-const db = require("../models");
+import database from "../models";
 
 module.exports = {
   validateSignUp: [
@@ -22,7 +21,7 @@ module.exports = {
       .isEmail().withMessage("Email isn\'t valid.").bail()
       .normalizeEmail()
       .custom(async value => {
-        const user = await db.users.findOne({ where: { email: value } });
+        const user = await database.users.findOne({ where: { email: value } });
         if (user) return Promise.reject("Email has already been taken.");
       }),
 
@@ -52,7 +51,7 @@ module.exports = {
       .isEmail().withMessage("Email isn\'t valid.").bail()
       .normalizeEmail()
       .custom(async value => {
-        const user = await db.users.findOne({ where: { email: value } });
+        const user = await database.users.findOne({ where: { email: value } });
         if (!user) return Promise.reject("User not found with this email.");
       }),
 

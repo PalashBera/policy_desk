@@ -3,8 +3,7 @@ import { errorFormatter } from "../helpers/error.helper";
 import responder from "../helpers/responder.helper";
 import jwt from "../helpers/jwt.helper";
 import userService from "../services/user.service";
-
-const db = require("../models");
+import database from "../models";
 
 export default {
   async signup(req, res) {
@@ -17,7 +16,7 @@ export default {
 
       const encryptedPass = userService.encryptPassword(req.body.password);
 
-      const user = await db.users.create({
+      const user = await database.users.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -39,7 +38,7 @@ export default {
         return responder.unprocessableEntity(res, { errors: errors.array() });
       }
 
-      const user = await db.users.findOne({ where: { email: req.body.email } });
+      const user = await database.users.findOne({ where: { email: req.body.email } });
       const authenticated = userService.comparePassword(req.body.password, user.password);
 
       if (!authenticated) {
@@ -55,6 +54,15 @@ export default {
 
       const token = jwt.issue({ id: user.id });
       return responder.success(req, res, user, { message: "Welcome! You have signed in successfully.", jwtToken: token });
+    } catch (err) {
+      return responder.internalServerError(res, err);
+    }
+  },
+
+  async authenticate(req, res) {
+    try {
+      const token = jwt.issue({ id: req.user.id });
+      return responder.success(req, res, req.user, { message: 'User has been authenticated successfully.', jwtToken: token });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
