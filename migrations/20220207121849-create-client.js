@@ -1,6 +1,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("clients", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -16,12 +16,20 @@ module.exports = {
         allowNull: false
       },
       email: {
+        type: Sequelize.STRING
+      },
+      phone_number: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false
       },
-      password: {
-        type: Sequelize.STRING,
+      user_id: {
+        type: Sequelize.DataTypes.INTEGER,
+        references: {
+          model: {
+            tableName: "users"
+          },
+          key: "id"
+        },
         allowNull: false
       },
       created_at: {
@@ -35,6 +43,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("clients");
   }
 };

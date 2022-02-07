@@ -1,5 +1,7 @@
+import database from "./index";
+
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
+  const Client = sequelize.define("client", {
     firstName: {
       type: Sequelize.STRING,
       allowNull: false
@@ -12,27 +14,28 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       isEmail: true,
       isLowercase: true,
-      allowNull: false,
-      unique: true,
       set(value) {
         this.setDataValue("email", value.toLowerCase());
       }
     },
-    password: {
+    phoneNumber: {
       type: Sequelize.STRING,
+      allowNull: false
+    },
+    userId: {
+      type: Sequelize.INTEGER,
       allowNull: false
     }
   }, {
     timestamps: true,
-    indexes: [{ unique: true, fields: ["email"] }],
     underscored: true
   });
 
-  User.associate = function (models) {
-    models.User.hasMany(models.Client, {
-      onDelete: "CASCADE"
+  Client.associate = function (models) {
+    models.Client.belongsTo(models.User, {
+      foreignKey: "user_id"
     });
   };
 
-  return User;
+  return Client;
 };

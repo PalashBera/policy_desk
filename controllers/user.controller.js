@@ -9,11 +9,7 @@ export default {
   async signup(req, res) {
     try {
       const errors = validationResult(req).formatWith(errorFormatter);
-
-      if (!errors.isEmpty()) {
-        return responder.unprocessableEntity(res, { errors: errors.array() });
-      }
-
+      if (!errors.isEmpty()) { return responder.unprocessableEntity(res, { errors: errors.array() }) };
       const encryptedPass = userService.encryptPassword(req.body.password);
 
       const user = await database.users.create({
@@ -24,7 +20,7 @@ export default {
       });
 
       const token = jwt.issue({ id: user.id });
-      return responder.success(req, res, user, { message: "Welcome! You have signed up successfully.", jwtToken: token });
+      return responder.success(req, res, user, { message: "Welcome! You have successfully signed up.", jwtToken: token });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -33,11 +29,7 @@ export default {
   async signin(req, res) {
     try {
       const errors = validationResult(req).formatWith(errorFormatter);
-
-      if (!errors.isEmpty()) {
-        return responder.unprocessableEntity(res, { errors: errors.array() });
-      }
-
+      if (!errors.isEmpty()) { return responder.unprocessableEntity(res, { errors: errors.array() }) };
       const user = await database.users.findOne({ where: { email: req.body.email } });
       const authenticated = userService.comparePassword(req.body.password, user.password);
 
@@ -49,11 +41,11 @@ export default {
           value: req.body.password
         }
 
-        return res.status(422).json({ errors: [error] });
+        return responder.unprocessableEntity(res, { errors: [error] });
       }
 
       const token = jwt.issue({ id: user.id });
-      return responder.success(req, res, user, { message: "Welcome! You have signed in successfully.", jwtToken: token });
+      return responder.success(req, res, user, { message: "Welcome! You have successfully signed in.", jwtToken: token });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -62,7 +54,7 @@ export default {
   async authenticate(req, res) {
     try {
       const token = jwt.issue({ id: req.user.id });
-      return responder.success(req, res, req.user, { message: 'User has been authenticated successfully.', jwtToken: token });
+      return responder.success(req, res, req.user, { message: "User has been successfully authenticated.", jwtToken: token });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
