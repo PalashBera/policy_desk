@@ -28,11 +28,5 @@ module.exports = (sequelize, Sequelize) => {
     underscored: true
   });
 
-  User.associate = function (models) {
-    models.User.hasMany(models.Client, {
-      onDelete: "CASCADE"
-    });
-  };
-
   return User;
 };

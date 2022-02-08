@@ -1,5 +1,3 @@
-import database from "./index";
-
 module.exports = (sequelize, Sequelize) => {
   const Client = sequelize.define("client", {
     firstName: {
@@ -30,12 +28,6 @@ module.exports = (sequelize, Sequelize) => {
     timestamps: true,
     underscored: true
   });
-
-  Client.associate = function (models) {
-    models.Client.belongsTo(models.User, {
-      foreignKey: "user_id"
-    });
-  };
 
   return Client;
 };
