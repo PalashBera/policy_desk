@@ -90,5 +90,5 @@ export default {
     } catch (err) {
       return responder.internalServerError(res, err);
     }
-  },
+  }
 };

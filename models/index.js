@@ -20,12 +20,30 @@ const db = {
 
 db.users = require("./user.js")(sequelize, Sequelize);
 db.clients = require("./client.js")(sequelize, Sequelize);
+db.policies = require("./policy.js")(sequelize, Sequelize);
 
+// Association between users and clients
 db.users.hasMany(db.clients, {
   foreignKey: "user_id"
 });
 db.clients.belongsTo(db.users, {
   foreignKey: "user_id"
+});
+
+// Association between users and policies
+db.users.hasMany(db.policies, {
+  foreignKey: "user_id"
+});
+db.policies.belongsTo(db.users, {
+  foreignKey: "user_id"
+});
+
+// Association between clients and policies
+db.clients.hasMany(db.policies, {
+  foreignKey: "client_id"
+});
+db.policies.belongsTo(db.clients, {
+  foreignKey: "client_id"
 });
 
 module.exports = db;

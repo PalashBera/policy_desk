@@ -15,7 +15,7 @@ module.exports = {
     check("phoneNumber")
       .exists().withMessage("Phone number should be present.").bail()
       .isString().withMessage("Phone number should be string.").bail()
-      .trim().isLength({ min: 1 }).withMessage("Phone number can\'t be blank."),
+      .trim().isLength({ min: 1 }).withMessage("Phone number can\'t be blank.")
   ],
 
   validateUpdate: [
@@ -32,6 +32,6 @@ module.exports = {
     check("phoneNumber")
       .exists().withMessage("Phone number should be present.").bail()
       .isString().withMessage("Phone number should be string.").bail()
-      .trim().isLength({ min: 1 }).withMessage("Phone number can\'t be blank."),
-  ],
+      .trim().isLength({ min: 1 }).withMessage("Phone number can\'t be blank.")
+  ]
 }
