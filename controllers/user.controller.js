@@ -1,9 +1,9 @@
-import { validationResult } from "express-validator";
-import { errorFormatter } from "../helpers/error.helper";
-import responder from "../helpers/responder.helper";
+import { validationResult } from 'express-validator';
+import { errorFormatter } from '../helpers/error.helper';
 import jwt from "../helpers/jwt.helper";
-import userService from "../services/user.service";
-import database from "../models";
+import responder from '../helpers/responder.helper';
+import userService from '../services/user.service';
+import database from '../models';
 
 export default {
   async signup(req, res) {
@@ -35,9 +35,9 @@ export default {
 
       if (!authenticated) {
         const error = {
-          location: "body",
-          message: "You have entered invalid password.",
-          param: "password",
+          location: 'body',
+          message: 'You have entered invalid password.',
+          param: 'password',
           value: req.body.password
         }
 
@@ -53,8 +53,7 @@ export default {
 
   async authenticate(req, res) {
     try {
-      const token = jwt.issue({ id: req.user.id });
-      return responder.success(req, res, req.user, { message: "User has been successfully authenticated.", jwtToken: token });
+      return responder.success(req, res, req.user, { message: 'User has been successfully authenticated.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }

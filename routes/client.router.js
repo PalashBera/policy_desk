@@ -1,7 +1,7 @@
-import express from "express";
-import passport from "passport";
-import clientController from "../controllers/client.controller";
-import clientService from "../services/client.service";
+import express from 'express';
+import passport from 'passport';
+import clientController from '../controllers/client.controller';
+import clientService from '../services/client.service';
 
 export const clientRouter = express.Router();
 

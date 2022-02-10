@@ -4,15 +4,15 @@ export function errorFormatter({ location, msg, param, value, nestedErrors }) {
     message: msg,
     param: param,
     value: value,
-    nestedErrors: nestedErrors,
+    nestedErrors: nestedErrors
   };
-}
+};
 
 export function notFoundError(name, id) {
   return {
-    location: "params",
+    location: 'params',
     message: `${name} has not been found.`,
-    param: "id",
+    param: 'id',
     value: id
   };
-}
+};

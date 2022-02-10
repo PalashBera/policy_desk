@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+require('dotenv').config();
 
-require("dotenv").config();
+import jwt from 'jsonwebtoken';
 
 export default {
   issue(payload) {
@@ -9,5 +9,5 @@ export default {
     return jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn
     });
-  },
+  }
 };

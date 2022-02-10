@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
+  const User = sequelize.define('user', {
     firstName: {
       type: Sequelize.STRING,
       allowNull: false
@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       unique: true,
       set(value) {
-        this.setDataValue("email", value.toLowerCase());
+        this.setDataValue('email', value.toLowerCase());
       }
     },
     password: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, Sequelize) => {
     }
   }, {
     timestamps: true,
-    indexes: [{ unique: true, fields: ["email"] }],
+    indexes: [{ unique: true, fields: ['email'] }],
     underscored: true
   });
 

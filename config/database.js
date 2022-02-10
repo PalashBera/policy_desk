@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 
 module.exports  = {
   development: {
@@ -7,7 +7,7 @@ module.exports  = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: 5432,
-    dialect: "postgres",
+    dialect: 'postgres',
     pool: {
       max: 5,
       min: 0,

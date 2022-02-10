@@ -1,8 +1,8 @@
-require("dotenv").config();
+require('dotenv').config();
 
-import Passport from "passport";
-import PassportJWT from "passport-jwt";
-import database from "../models";
+import Passport from 'passport';
+import PassportJWT from 'passport-jwt';
+import database from '../models';
 
 export const configJWTStrategy = () => {
   const opts = {

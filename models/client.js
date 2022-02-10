@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Client = sequelize.define("client", {
+  const Client = sequelize.define('client', {
     firstName: {
       type: Sequelize.STRING,
       allowNull: false
@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
       isEmail: true,
       isLowercase: true,
       set(value) {
-        this.setDataValue("email", value.toLowerCase());
+        this.setDataValue('email', value.toLowerCase());
       }
     },
     phoneNumber: {

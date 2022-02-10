@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Policy = sequelize.define("policy", {
+  const Policy = sequelize.define('policy', {
     policyName: {
       type: Sequelize.STRING,
       allowNull: false

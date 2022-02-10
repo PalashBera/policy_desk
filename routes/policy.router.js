@@ -1,7 +1,7 @@
-import express from "express";
-import passport from "passport";
-import policyController from "../controllers/policy.controller";
-import policyService from "../services/policy.service";
+import express from 'express';
+import passport from 'passport';
+import policyController from '../controllers/policy.controller';
+import policyService from '../services/policy.service';
 
 export const policyRouter = express.Router();
 

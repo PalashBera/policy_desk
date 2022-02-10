@@ -1,13 +1,13 @@
-import { validationResult } from "express-validator";
-import { errorFormatter, notFoundError } from "../helpers/error.helper";
-import responder from "../helpers/responder.helper";
-import database from "../models";
+import { validationResult } from 'express-validator';
+import { errorFormatter, notFoundError } from '../helpers/error.helper';
+import responder from '../helpers/responder.helper';
+import database from '../models';
 
 export default {
   async index(req, res) {
     try {
       const policies = await database.policies.findAll({ where: { user_id: req.user.id }, include: [ { model: database.clients } ] });
-      return responder.success(req, res, policies, { message: "Policies have been successfully fetched." });
+      return responder.success(req, res, policies, { message: 'Policies have been successfully fetched.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -22,8 +22,8 @@ export default {
         }
       });
 
-      if (!policy) { return responder.notFound(res, { errors: [notFoundError("Policy", req.params.id)] }) };
-      return responder.success(req, res, policy, { message: "Policy has been successfully fetched." });
+      if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
+      return responder.success(req, res, policy, { message: 'Policy has been successfully fetched.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -47,7 +47,7 @@ export default {
         userId: req.user.id
       });
 
-      return responder.success(req, res, policy, { message: "Policy has been successfully created." });
+      return responder.success(req, res, policy, { message: 'Policy has been successfully created.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -65,7 +65,7 @@ export default {
         }
       });
 
-      if (!policy) { return responder.notFound(res, { errors: [notFoundError("Policy", req.params.id)] }) };
+      if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
 
       policy.update({
         policyName: req.body.policyName,
@@ -79,7 +79,7 @@ export default {
         clientId: req.body.clientId
       });
 
-      return responder.success(req, res, policy, { message: "Policy has been successfully updated." });
+      return responder.success(req, res, policy, { message: 'Policy has been successfully updated.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }
@@ -94,9 +94,9 @@ export default {
         }
       });
 
-      if (!policy) { return responder.notFound(res, { errors: [notFoundError("Policy", req.params.id)] }) };
+      if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
       policy.destroy();
-      return responder.success(req, res, policy, { message: "Policy has been successfully deleted." });
+      return responder.success(req, res, policy, { message: 'Policy has been successfully deleted.' });
     } catch (err) {
       return responder.internalServerError(res, err);
     }

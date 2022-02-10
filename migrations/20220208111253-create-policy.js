@@ -42,9 +42,9 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         references: {
           model: {
-            tableName: "clients"
+            tableName: 'clients'
           },
-          key: "id"
+          key: 'id'
         },
         allowNull: false
       },
@@ -52,9 +52,9 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         references: {
           model: {
-            tableName: "users"
+            tableName: 'users'
           },
-          key: "id"
+          key: 'id'
         },
         allowNull: false
       },
@@ -68,6 +68,7 @@ module.exports = {
       }
     });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('policies');
   }
