@@ -1,6 +1,7 @@
 require('dotenv').config();
 global.env = process.env.NODE_ENV || 'development';
 const config = require('./config/' + global.env);
+const port = process.env.PORT || config.port;
 
 import express from 'express';
 import logger from 'morgan';
@@ -33,6 +34,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Policy Desk application.' });
 });
 
-app.listen(config.port, () => {
-  console.log(`Server is running at PORT http://localhost:${config.port}`);
+app.listen(port, () => {
+  console.log(`Server is running in ${global.env} mode at PORT http://localhost:${port}`);
 });

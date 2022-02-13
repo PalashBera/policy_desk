@@ -4,13 +4,12 @@
   "description": "It's a RESTful API application for Policy Desk with Node.js, Express, and PostgreSQL.",
   "main": "index.js",
   "engines": {
-    "node": ">=16.13.2",
-    "npm": ">=8.4.0"
+    "node": ">=16.x",
+    "npm": ">=8.x"
   },
   "scripts": {
     "start": "nodemon index.js --exec babel-node --presets env",
-    "build": "babel src -d dist --source-maps inline --copy-files",
-    "serve": "node dist/index.js",
+    "serve": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

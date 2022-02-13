@@ -9,7 +9,7 @@ export function sendToken(email, token) {
 
   const msg = {
     to: email,
-    from: process.env.EMAIL_SNET_FROM,
+    from: process.env.EMAIL_SENT_FROM,
     subject: 'OTP - Policy Desk',
     text: mailMessage,
     html: mailMessage
