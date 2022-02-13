@@ -5,7 +5,7 @@ export default {
     const link = req.originalUrl;
 
     if (req.user) {
-      const jwtToken = jwt.issue({ id: req.user.id });
+      const jwtToken = jwt.issue({ id: req.user.id }, '7d');
       metaData.jwtToken = jwtToken;
     };
 
@@ -15,9 +15,7 @@ export default {
       meta: metaData
     };
 
-
     if (Array.isArray(data)) resData.meta.totalCount = data.length;
-
     res.json(resData);
   },
 

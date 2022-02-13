@@ -21,6 +21,18 @@ module.exports = (sequelize, Sequelize) => {
     password: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    token: {
+      type: Sequelize.STRING
+    },
+    confirmationToken: {
+      type: Sequelize.STRING
+    },
+    confirmationTokenSentAt: {
+      type: Sequelize.DATE
+    },
+    confirmedAt: {
+      type: Sequelize.DATE
     }
   }, {
     timestamps: true,
