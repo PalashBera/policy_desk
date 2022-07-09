@@ -6,7 +6,7 @@ import database from '../models';
 export default {
   async index(req, res) {
     try {
-      const policies = await database.policies.findAll({ where: { user_id: req.user.id }, include: [ { model: database.clients } ] });
+      const policies = await database.policies.findAll({ where: { user_id: req.user.id } });
       return responder.success(req, res, policies, { message: 'Policies have been successfully fetched.' });
     } catch (err) {
       return responder.internalServerError(res, err);
@@ -43,7 +43,6 @@ export default {
         premium: req.body.premium,
         commencementDate: req.body.commencementDate,
         maturityDate: req.body.maturityDate,
-        clientId: req.body.clientId,
         userId: req.user.id
       });
 
@@ -75,8 +74,7 @@ export default {
         mode: req.body.mode,
         premium: req.body.premium,
         commencementDate: req.body.commencementDate,
-        maturityDate: req.body.maturityDate,
-        clientId: req.body.clientId
+        maturityDate: req.body.maturityDate
       });
 
       return responder.success(req, res, policy, { message: 'Policy has been successfully updated.' });

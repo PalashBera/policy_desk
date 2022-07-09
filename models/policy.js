@@ -31,10 +31,6 @@ module.exports = (sequelize, Sequelize) => {
     maturityDate: {
       type: Sequelize.DATEONLY
     },
-    clientId: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
     userId: {
       type: Sequelize.INTEGER,
       allowNull: false

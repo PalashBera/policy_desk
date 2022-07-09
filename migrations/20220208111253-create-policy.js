@@ -38,16 +38,6 @@ module.exports = {
       maturity_date: {
         type: Sequelize.DATEONLY
       },
-      client_id: {
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: {
-            tableName: 'clients'
-          },
-          key: 'id'
-        },
-        allowNull: false
-      },
       user_id: {
         type: Sequelize.DataTypes.INTEGER,
         references: {
