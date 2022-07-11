@@ -34,7 +34,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       surrendered: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
+      },
+      payable_months: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        allowNull: false,
+        defaultValue: []
       },
       user_id: {
         type: Sequelize.INTEGER,
