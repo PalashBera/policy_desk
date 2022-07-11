@@ -61,29 +61,6 @@ module.exports = {
       .trim().isLength({ min: 6 }).withMessage('Password must be at least 6 characters.')
   ],
 
-  validateConfirm: [
-    check('email')
-      .exists().withMessage('Email should be present.').bail()
-      .isString().withMessage('Email should be string.').bail()
-      .trim().isLength({ min: 1 }).withMessage('Email can\'t be blank.').bail()
-      .isEmail().withMessage('Email isn\'t valid.').bail()
-      .normalizeEmail()
-      .custom(async value => {
-        const user = await database.users.findOne({ where: { email: value } });
-        if (!user) return Promise.reject('User not found with this email.');
-      }),
-
-    check('token')
-      .exists().withMessage('Token should be present.').bail()
-      .isString().withMessage('Token should be string.').bail()
-      .trim().isLength({ min: 6, max: 6 }).withMessage('Token must be 6 digit number.'),
-
-    check('confirmationToken')
-      .exists().withMessage('Confirmation token should be present.').bail()
-      .isString().withMessage('Confirmation token should be string.').bail()
-      .trim().isLength({ min: 1 }).withMessage('Confirmation token can\'t be blank.')
-  ],
-
   encryptPassword(password) {
     const salt = bcrypt.genSaltSync(10);
     return bcrypt.hashSync(password, salt);

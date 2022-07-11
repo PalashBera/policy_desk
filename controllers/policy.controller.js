@@ -15,13 +15,7 @@ export default {
 
   async show(req, res) {
     try {
-      const policy = await database.policies.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.user.id
-        }
-      });
-
+      const policy = await database.policies.findOne({ where: { id: req.params.id, user_id: req.user.id } });
       if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
       return responder.success(req, res, policy, { message: 'Policy has been successfully fetched.' });
     } catch (err) {
@@ -35,14 +29,13 @@ export default {
       if (!errors.isEmpty()) { return responder.unprocessableEntity(res, { errors: errors.array() }) };
 
       const policy = await database.policies.create({
-        policyName: req.body.policyName,
         policyNumber: req.body.policyNumber,
-        policyHolderName: req.body.policyHolderName,
-        tenure: req.body.tenure,
-        mode: req.body.mode,
-        premium: req.body.premium,
         commencementDate: req.body.commencementDate,
-        maturityDate: req.body.maturityDate,
+        policyHolder: req.body.policyHolder,
+        premiumAmount: req.body.premiumAmount,
+        policyMode: req.body.policyMode,
+        policyType: req.body.policyType,
+        phoneNumber: req.body.phoneNumber,
         userId: req.user.id
       });
 
@@ -56,25 +49,18 @@ export default {
     try {
       const errors = validationResult(req).formatWith(errorFormatter);
       if (!errors.isEmpty()) { return responder.unprocessableEntity(res, { errors: errors.array() }) };
-
-      const policy = await database.policies.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.user.id
-        }
-      });
-
+      const policy = await database.policies.findOne({ where: { id: req.params.id, user_id: req.user.id } });
       if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
 
       policy.update({
-        policyName: req.body.policyName,
         policyNumber: req.body.policyNumber,
-        policyHolderName: req.body.policyHolderName,
-        tenure: req.body.tenure,
-        mode: req.body.mode,
-        premium: req.body.premium,
         commencementDate: req.body.commencementDate,
-        maturityDate: req.body.maturityDate
+        policyHolder: req.body.policyHolder,
+        premiumAmount: req.body.premiumAmount,
+        policyMode: req.body.policyMode,
+        policyType: req.body.policyType,
+        phoneNumber: req.body.phoneNumber,
+        surrendered: req.body.surrendered
       });
 
       return responder.success(req, res, policy, { message: 'Policy has been successfully updated.' });
@@ -85,13 +71,7 @@ export default {
 
   async destroy(req, res) {
     try {
-      const policy = await database.policies.findOne({
-        where: {
-          id: req.params.id,
-          user_id: req.user.id
-        }
-      });
-
+      const policy = await database.policies.findOne({ where: { id: req.params.id, user_id: req.user.id } });
       if (!policy) { return responder.notFound(res, { errors: [notFoundError('Policy', req.params.id)] }) };
       policy.destroy();
       return responder.success(req, res, policy, { message: 'Policy has been successfully deleted.' });

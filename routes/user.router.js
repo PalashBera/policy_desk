@@ -8,4 +8,3 @@ export const userRouter = express.Router();
 userRouter.post('/signup', userService.validateSignUp, userController.signup);
 userRouter.post('/signin', userService.validateSignIn, userController.signin);
 userRouter.get('/auth', passport.authenticate('jwt', { session: false }), userController.authenticate);
-userRouter.put('/confirm', userService.validateConfirm, userController.confirm);

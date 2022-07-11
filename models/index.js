@@ -23,11 +23,7 @@ db.users = require('./user.js')(sequelize, Sequelize);
 db.policies = require('./policy.js')(sequelize, Sequelize);
 
 // Association between users and policies
-db.users.hasMany(db.policies, {
-  foreignKey: 'user_id'
-});
-db.policies.belongsTo(db.users, {
-  foreignKey: 'user_id'
-});
+db.users.hasMany(db.policies, { foreignKey: 'user_id' });
+db.policies.belongsTo(db.users, { foreignKey: 'user_id' });
 
 module.exports = db;

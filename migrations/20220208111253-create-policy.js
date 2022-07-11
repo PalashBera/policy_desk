@@ -7,43 +7,39 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
-      policy_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       policy_number: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      policy_holder_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      tenure: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      mode: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      premium: {
-        type: Sequelize.INTEGER,
         allowNull: false
       },
       commencement_date: {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
-      maturity_date: {
-        type: Sequelize.DATEONLY
+      policy_holder: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      premium_amount: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      policy_mode: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      policy_type: {
+        type: Sequelize.STRING
+      },
+      phone_number: {
+        type: Sequelize.STRING
+      },
+      surrendered: {
+        type: Sequelize.BOOLEAN
       },
       user_id: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         references: {
-          model: {
-            tableName: 'users'
-          },
+          model: { tableName: 'users' },
           key: 'id'
         },
         allowNull: false
