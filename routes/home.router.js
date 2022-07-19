@@ -7,4 +7,4 @@ export const homeRouter = express.Router();
 
 homeRouter
   .route('/')
-  .get(passport.authenticate('jwt', { session: false }), homeService.validateIndex, homeController.index);
+  .post(passport.authenticate('jwt', { session: false }), homeService.validateIndex, homeController.index);
