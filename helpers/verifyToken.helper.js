@@ -4,13 +4,12 @@ import sgMail from '@sendgrid/mail';
 
 export function sendToken(email, token) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  const validity = parseInt(process.env.CONFIRMATION_TOKEN_VALIDITY) / 60000;
   const mailMessage = `Your OTP is valid for ${validity}minutes. Your verification OTP is ${token}.`
 
   const msg = {
     to: email,
     from: process.env.EMAIL_SENT_FROM,
-    subject: 'OTP - Policy Desk',
+    subject: 'Policy Desk Export',
     text: mailMessage,
     html: mailMessage
   }
@@ -24,8 +23,4 @@ export function sendToken(email, token) {
     .catch((error) => {
       console.error(error)
     })
-};
-
-export function generateToken() {
-  return Math.floor(100000 + Math.random() * 900000);
 };

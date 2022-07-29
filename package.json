@@ -8,6 +8,10 @@
     "npm": ">=8.x"
   },
   "scripts": {
+    "db:create": "npx sequelize-cli db:create",
+    "db:drop": "npx sequelize-cli db:drop",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
     "start": "nodemon index.js --exec babel-node --presets env",
     "serve": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
